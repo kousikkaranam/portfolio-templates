@@ -152,3 +152,32 @@ footer {
   color: white;
   border-color: #0969da;
 }
+
+#site-description strong {
+  color: #0969da;
+}
+.header-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.github-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  text-decoration: none;
+  font-size: 14px;
+  color: #24292e;
+  background: white;
+}
+
+.github-btn:hover {
+  background: #f3f4f6;
+}
+
+footer a {
+  color: #0969da;
+  text-decoration: none;
+}

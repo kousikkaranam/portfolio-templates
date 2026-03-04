@@ -7,14 +7,24 @@ async function loadPortfolios() {
   const res = await fetch("data/portfolios.json");
   portfolios = await res.json();
 
+  updateWebsiteCount(portfolios.length);
+  // Sort A-Z automatically
+  portfolios.sort((a, b) => a.name.localeCompare(b.name));
+
   populateTaglines();
   createAlphabetFilter();
   renderPortfolios(portfolios);
-  portfolios.sort((a, b) => a.name.localeCompare(b.name));
 
-  document.getElementById("searchInput").addEventListener("input", applyFilters);
-  document.getElementById("taglineFilter").addEventListener("change", applyFilters);
+  document
+    .getElementById("searchInput")
+    .addEventListener("input", applyFilters);
+
+  document
+    .getElementById("taglineFilter")
+    .addEventListener("change", applyFilters);
 }
+
+
 
 function populateTaglines() {
 
@@ -31,6 +41,7 @@ function populateTaglines() {
   taglines.forEach(tag => {
 
     const option = document.createElement("option");
+
     option.value = tag;
     option.textContent = tag;
 
@@ -38,6 +49,8 @@ function populateTaglines() {
 
   });
 }
+
+
 
 function createAlphabetFilter() {
 
@@ -66,10 +79,13 @@ function createAlphabetFilter() {
     };
 
     container.appendChild(btn);
+
   });
 
   container.firstChild.classList.add("active");
 }
+
+
 
 function applyFilters() {
 
@@ -101,10 +117,13 @@ function applyFilters() {
       p.tagline === selectedTagline;
 
     return searchMatch && letterMatch && roleMatch;
+
   });
 
   renderPortfolios(filtered);
 }
+
+
 
 function renderPortfolios(list) {
 
@@ -119,7 +138,11 @@ function renderPortfolios(list) {
     card.className = "card";
 
     card.innerHTML = `
-      <img src="https://image.thum.io/get/width/800/${p.url}">
+      <img
+        loading="lazy"
+        src="https://image.thum.io/get/width/800/${p.url}"
+        onerror="this.src='https://placehold.co/800x400?text=Website+Preview'"
+      >
       <div class="card-content">
         <h3>${p.name}</h3>
         <p>${p.tagline || ""}</p>
@@ -131,6 +154,16 @@ function renderPortfolios(list) {
     container.appendChild(card);
 
   });
+
 }
+function updateWebsiteCount(count) {
+
+  const desc = document.getElementById("site-description");
+
+  desc.innerHTML =
+    `A curated collection of <strong>${count}</strong> personal websites`;
+
+}
+
 
 loadPortfolios();
