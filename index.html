@@ -3,27 +3,41 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Developer Portfolios</title>
+  <title>Personal Website Gallery</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-  <h1>Developer Portfolios</h1>
-  <p>A curated list of developer portfolio websites</p>
+  <h1>Personal Website Gallery</h1>
+
+  <p>
+    A curated collection of personal websites, portfolios, and digital spaces
+    from people around the world.
+  </p>
 </header>
 
-<div class="search">
-  <input type="text" id="searchInput" placeholder="Search developers...">
+<div class="controls">
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="Search by name, role, or keyword..."
+  >
+
+  <select id="taglineFilter">
+    <option value="all">All roles</option>
+  </select>
+
 </div>
+
+<div id="alphabetFilter" class="alphabet-filter"></div>
 
 <section id="portfolio-grid" class="portfolio-grid"></section>
 
 <footer>
-  <p>
-    Contribute on GitHub • Built by Kousik Karanam
-  </p>
+  <p>Open source • Built by Kousik Karanam</p>
 </footer>
 
 <script src="script.js"></script>
